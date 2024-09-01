@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Estado quando o botão está pressionado ou focado -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="9dp" /> <!-- Cantos arredondados -->
+            <solid android:color="@color/Verde_escuro" /> <!-- Cor de fundo sólida -->
+            <padding
+                android:left="0dp"
+                android:top="0dp"
+                android:right="0dp"
+                android:bottom="0dp"
+                /> <!-- Preenchimento -->
+            <size
+                android:width="265dp"
+                android:height="55dp"
+                /> <!-- Tamanho -->
+            <stroke
+                android:width="4dp"
+                android:color="@color/black"
+                /> <!-- Borda -->
+        </shape>
+    </item>
+
+    <!-- Estado normal do botão -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="9dp" /> <!-- Cantos arredondados -->
+            <solid android:color="@color/Verde_Claro" /> <!-- Cor de fundo sólida -->
+            <padding
+                android:left="0dp"
+                android:top="0dp"
+                android:right="0dp"
+                android:bottom="0dp"
+                /> <!-- Preenchimento -->
+            <size
+                android:width="333dp"
+                android:height="50dp"
+                /> <!-- Tamanho -->
+            <stroke
+                android:width="3dp"
+                android:color="@color/white"
+                /> <!-- Borda -->
+        </shape>
+    </item>
+</selector>
