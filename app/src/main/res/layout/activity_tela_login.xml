@@ -1,10 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.TelaLogin">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".Controllers.TelaLogin"
+    android:background="@drawable/background_gradiente_theme">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/container_de_itens"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="30dp"
+        android:alpha="0.7">
+        <ImageView
+            android:id="@+id/iconeLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icone_login"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"/>
+        <TextView
+            android:id="@+id/textoLogin"
+            android:layout_below="@id/iconeLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/Login"
+            android:textAllCaps="true"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:paddingTop="20dp"
+            />
+        <EditText
+            android:id="@+id/pegarEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textoLogin"
+            android:background="@drawable/backgroud_edit_text"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginHorizontal="27dp"
+            />
+        <EditText
+            android:id="@+id/pegarSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pegarEmail"
+            android:background="@drawable/backgroud_edit_text"
+            android:hint="Senha"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="27dp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEntrar"
+            android:layout_below="@id/pegarSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_btn"
+            android:layout_marginTop="25dp"
+            android:layout_marginHorizontal="60dp"
+            android:text="Entrar"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="center|center_vertical"
+            android:padding="10dp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCadastrar"
+            android:layout_below="@id/btnEntrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_btn"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="60dp"
+            android:text="Cadastrar"
+            android:gravity="center|center_vertical"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:layout_marginBottom="25dp"
+            />
+    </RelativeLayout>
+</RelativeLayout>
