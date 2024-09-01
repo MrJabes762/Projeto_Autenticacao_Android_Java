@@ -4,7 +4,7 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <corners android:radius="9dp" /> <!-- Cantos arredondados -->
-            <solid android:color="@color/Verde_escuro" /> <!-- Cor de fundo sólida -->
+            <solid android:color="@color/Verde_Claro" /> <!-- Cor de fundo sólida -->
             <padding
                 android:left="0dp"
                 android:top="0dp"
@@ -26,7 +26,7 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="9dp" /> <!-- Cantos arredondados -->
-            <solid android:color="@color/Verde_Claro" /> <!-- Cor de fundo sólida -->
+            <solid android:color="@color/Verde_escuro" /> <!-- Cor de fundo sólida -->
             <padding
                 android:left="0dp"
                 android:top="0dp"
