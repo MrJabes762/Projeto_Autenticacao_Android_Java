@@ -48,6 +48,7 @@
             android:layout_marginTop="26dp"
             android:layout_marginHorizontal="27dp"
             android:drawableRight="@drawable/email"
+            android:singleLine="true"
             />
         <EditText
             android:id="@+id/pegarSenha"
@@ -61,6 +62,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="27dp"
             android:drawableRight="@drawable/senha"
+            android:singleLine="true"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnEntrar"
