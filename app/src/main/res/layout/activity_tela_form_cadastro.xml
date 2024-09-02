@@ -15,7 +15,7 @@
             android:layout_centerInParent="true"
             android:layout_marginHorizontal="30dp"
             android:alpha="0.7">
-                <TextView
+                <ImageView
                     android:id="@+id/textoCadastrese"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -24,10 +24,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="27dp"
                     android:layout_marginTop="20dp"
-                    android:textColor="@color/white"
-                    android:text="Cadastre-se"
-                    android:textStyle="bold"
-                    android:textSize="25dp"
+                    android:src="@drawable/useradd"
                     />
                 <TextView
                     android:id="@+id/textoInserir"
@@ -55,6 +52,8 @@
                     android:padding="15dp"
                     android:layout_centerHorizontal="true"
                     android:hint="Nome"
+                    android:drawableRight="@drawable/usuerinput"
+                    android:singleLine="true"
                     />
                 <EditText
                     android:id="@+id/pegarEmailCadastro"
@@ -69,6 +68,7 @@
                     android:drawableRight="@drawable/email"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
+                    android:singleLine="true"
                     />
                 <EditText
                     android:id="@+id/pegarSenhaCadastro"
@@ -84,6 +84,7 @@
                     android:hint="Senha"
                     android:inputType="textPassword"
                     android:layout_marginBottom="40dp"
+                    android:singleLine="true"
                     />
         </RelativeLayout>
     <androidx.appcompat.widget.AppCompatButton
