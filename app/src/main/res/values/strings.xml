@@ -2,4 +2,5 @@
     <string name="app_name">Projeto Autenticação Android Java</string>
     <string name="Login">Insira Seus Dados</string>
     <string name="Cadastro">Insira seus dados para cadastro</string>
+    <string name="Deslogar">Deslogar</string>
 </resources>
