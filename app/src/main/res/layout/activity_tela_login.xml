@@ -33,7 +33,7 @@
             android:textAllCaps="true"
             android:textSize="15dp"
             android:textColor="@color/white"
-            android:gravity="center_horizontal"
+            android:gravity="center|center_horizontal"
             android:paddingTop="20dp"
             />
         <EditText
