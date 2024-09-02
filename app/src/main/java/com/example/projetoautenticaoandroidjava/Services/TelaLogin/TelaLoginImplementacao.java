@@ -1,5 +1,8 @@
 package com.example.projetoautenticaoandroidjava.Services.TelaLogin;
 
+import android.view.View;
+import android.widget.ProgressBar;
+
 import com.example.projetoautenticaoandroidjava.Controllers.TelaLogin;
 import com.example.projetoautenticaoandroidjava.R;
 import com.example.projetoautenticaoandroidjava.Services.Direcionador.DirecionadorDeLayout;
@@ -14,6 +17,7 @@ public class TelaLoginImplementacao extends TelaLogin {
         setHashMapsECaches();
         setEditTexts();
         setBtns();
+        setProgressBar(findViewById(R.id.Progressbar));
     }
 
     private void setBtns() {
@@ -31,6 +35,9 @@ public class TelaLoginImplementacao extends TelaLogin {
         setCachedLayoutPrincipal(null);
         setCachedLayoutFormCadastro(null);
         setLayoutClass(null);
+    }
+    private int alterarVisibilidade (ProgressBar progress){
+        return progress.getVisibility() == View.VISIBLE ? View.GONE: View.VISIBLE;
     }
 
     @Override
