@@ -53,6 +53,7 @@
                     android:layout_centerHorizontal="true"
                     android:hint="Nome"
                     android:drawableRight="@drawable/usuerinput"
+                    android:singleLine="true"
                     />
                 <EditText
                     android:id="@+id/pegarEmailCadastro"
@@ -67,6 +68,7 @@
                     android:drawableRight="@drawable/email"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
+                    android:singleLine="true"
                     />
                 <EditText
                     android:id="@+id/pegarSenhaCadastro"
@@ -82,6 +84,7 @@
                     android:hint="Senha"
                     android:inputType="textPassword"
                     android:layout_marginBottom="40dp"
+                    android:singleLine="true"
                     />
         </RelativeLayout>
     <androidx.appcompat.widget.AppCompatButton
