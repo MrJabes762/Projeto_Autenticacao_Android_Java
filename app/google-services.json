@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "783944050902",
+    "project_id": "projeto-meu-ifba-saj",
+    "storage_bucket": "projeto-meu-ifba-saj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783944050902:android:283fb089eaf65909038177",
+        "android_client_info": {
+          "package_name": "com.example.projetoautenticaoandroidjava"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcHjsCDhtVdpeZkOXxpRuteS1BNSd46lQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783944050902:android:26da9f3474af250a038177",
+        "android_client_info": {
+          "package_name": "com.projetomeuifsaj"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcHjsCDhtVdpeZkOXxpRuteS1BNSd46lQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
