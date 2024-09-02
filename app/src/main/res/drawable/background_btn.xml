@@ -17,7 +17,7 @@
                 /> <!-- Tamanho -->
             <stroke
                 android:width="4dp"
-                android:color="@color/black"
+                android:color="@color/Verde_Claro"
                 /> <!-- Borda -->
         </shape>
     </item>
