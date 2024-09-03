@@ -50,24 +50,26 @@ public class TelaLoginImplementacao extends TelaLogin {
         });
     }
 
-    private void irTelaFormCadastro() { // verificação se o Hash Map esta vazio se não ja inicializa
+    private void irTelaFormCadastro() { // verificação se o Cache esta vazio se não ja inicializa
         if (getCachedLayoutFormCadastro()!= null) {
-            DirecionadorDeLayout.irParaLayout(this, getCachedLayoutFormCadastro());
+            DirecionadorDeLayout.irParaLayout(this, getLayoutCache().get(R.layout.activity_tela_form_cadastro));
         } else {
             setLayoutClass(TelaFormCadastroImplementacao.class);
-            DirecionadorDeLayout.irParaLayout(this, getLayoutClass());
-            getLayoutCache().put(R.layout.activity_tela_form_cadastro, getLayoutClass());// Armazena o layout em cache
+            setCachedLayoutPrincipal(getLayoutClass());
+            getLayoutCache().put(R.layout.activity_tela_form_cadastro, getCachedLayoutPrincipal());// Armazena o layout em cache
+            DirecionadorDeLayout.irParaLayout(this, getLayoutCache().get(R.layout.activity_tela_form_cadastro));
         }
         finish();
     }
 
     private void irTelaPrincipal() {
         if (getCachedLayoutPrincipal() != null){
-            DirecionadorDeLayout.irParaLayout(this, getCachedLayoutPrincipal());
+            DirecionadorDeLayout.irParaLayout(this, getLayoutCache().get(R.layout.activity_tela_principal));
         } else {
             setLayoutClass(TelaPrincipalImplementacao.class);
-            DirecionadorDeLayout.irParaLayout(this, getLayoutClass());
-            getLayoutCache().put(R.layout.activity_tela_principal,getLayoutClass());// Armazena o layout em cache
+            setCachedLayoutFormCadastro(getLayoutClass());
+            getLayoutCache().put(R.layout.activity_tela_principal,getCachedLayoutFormCadastro());// Armazena o layout em cache
+            DirecionadorDeLayout.irParaLayout(this, getLayoutCache().get(R.layout.activity_tela_principal));
         }
         finish();
     }
