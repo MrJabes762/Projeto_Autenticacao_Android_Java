@@ -6,14 +6,23 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class FirebaseFirestoreRepository {
-
-    public static void adicionarUsuario(Context context, String email, String senha) {
+    private static FirebaseFirestore bancoDeDados;
+    private static Map<String,Object> usuarios;
+    private static String usuarioID;
+    private static DocumentReference documentReference;
+    public static void adicionarUsuario(Context context, String email, String senha, String nome) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(task -> {
                     try {
                         if (task.isSuccessful()) {
+                            salvarDadosDoUsuario(context,nome);
                             exibirMensagem(context, "Usuário cadastrado com sucesso no banco de dados!");
                         } else {
                             throw task.getException();
@@ -28,7 +37,55 @@ public abstract class FirebaseFirestoreRepository {
                 });
     }
 
+    private static void salvarDadosDoUsuario(Context context, String nome) {// Pegandp o Nome Pra salvar no Firestore
+        setBancoDeDados(FirebaseFirestore.getInstance());// Set do Banco de Dados
+        setUsuarios(new HashMap<>());// Set do HashMap
+        getUsuarios().put("Nome", nome);// Set da coleção de nomes que serão capturados
+        setUsuarioID(FirebaseAuth.getInstance()
+                .getCurrentUser()
+                .getUid());// Recuerando o Id do Usuario no Banco de dados
+        setDocumentReference(getBancoDeDados()
+                .collection("Usuarios")
+                .document(getUsuarioID())); // Criando a coleção de Usuarios e dentro dele terá documetos no modelo ID
+        getDocumentReference().set(getUsuarios()).addOnSuccessListener( sucess -> { // se for sucesso ao salvar o nome
+            exibirMensagem(context, "Usuario Salvo Com Sucesso");
+        }).addOnFailureListener( faliure -> {// se houver falha ao salvar o nome
+            exibirMensagem(context, "Erro ao cadastrar o Usuario" + faliure);
+        });
+    }
+
     private static void exibirMensagem(Context context, String mensagem) {
         Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show();
+    }
+
+    private static FirebaseFirestore getBancoDeDados() {
+        return bancoDeDados;
+    }
+
+    private static void setBancoDeDados(FirebaseFirestore bancoDeDados) {
+        FirebaseFirestoreRepository.bancoDeDados = bancoDeDados;
+    }
+    private static Map<String, Object> getUsuarios() {
+        return usuarios;
+    }
+
+    private static void setUsuarios(Map<String, Object> usuarios) {
+        FirebaseFirestoreRepository.usuarios = usuarios;
+    }
+
+    private static String getUsuarioID() {
+        return usuarioID;
+    }
+
+    private static void setUsuarioID(String usuarioID) {
+        FirebaseFirestoreRepository.usuarioID = usuarioID;
+    }
+
+    private static DocumentReference getDocumentReference() {
+        return documentReference;
+    }
+
+    private static void setDocumentReference(DocumentReference documentReference) {
+        FirebaseFirestoreRepository.documentReference = documentReference;
     }
 }

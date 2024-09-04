@@ -46,7 +46,7 @@ public class TelaFormCadastroImplementacao extends TelaFormCadastro {
         } else if (getUser().getSenha().length() < 6) {
             throw new FormCadastroException("Digite uma senha com no mínimo 6 caracteres");
         } else {
-            FirebaseFirestoreRepository.adicionarUsuario(this,getUser().getEmail(),getUser().getSenha());
+            FirebaseFirestoreRepository.adicionarUsuario(this,getUser().getEmail(),getUser().getSenha(), getUser().getNome());
         }
     }
 
