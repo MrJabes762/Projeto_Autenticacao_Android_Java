@@ -3,6 +3,9 @@ package com.example.projetoautenticaoandroidjava.Data;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.projetoautenticaoandroidjava.model.Usuario;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -11,12 +14,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class FirebaseFirestoreRepository {
     private static FirebaseFirestore bancoDeDados;
+    private static FirebaseAuth bancoDeDadosAtenticacoa;
     private static Map<String,Object> usuarios;
     private static String usuarioID;
     private static DocumentReference documentReference;
+
     public static void adicionarUsuario(Context context, String email, String senha, String nome) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(task -> {
@@ -54,8 +60,22 @@ public abstract class FirebaseFirestoreRepository {
         });
     }
 
+    public static Task<AuthResult> autenticarUsuario(Usuario user) {
+        setBancoDeDadosAtenticacoa(FirebaseAuth.getInstance());
+        return getBancoDeDadosAtenticacoa()
+                .signInWithEmailAndPassword(user.getEmail(), user.getSenha());
+    }
+
     private static void exibirMensagem(Context context, String mensagem) {
         Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show();
+    }
+
+    private static FirebaseAuth getBancoDeDadosAtenticacoa() {
+        return bancoDeDadosAtenticacoa;
+    }
+
+    private static void setBancoDeDadosAtenticacoa(FirebaseAuth bancoDeDadosAtenticacoa) {
+        FirebaseFirestoreRepository.bancoDeDadosAtenticacoa = bancoDeDadosAtenticacoa;
     }
 
     private static FirebaseFirestore getBancoDeDados() {
@@ -88,4 +108,5 @@ public abstract class FirebaseFirestoreRepository {
     private static void setDocumentReference(DocumentReference documentReference) {
         FirebaseFirestoreRepository.documentReference = documentReference;
     }
+
 }
