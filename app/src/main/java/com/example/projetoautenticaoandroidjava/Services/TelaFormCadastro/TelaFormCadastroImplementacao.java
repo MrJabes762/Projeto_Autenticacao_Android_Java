@@ -28,22 +28,24 @@ public class TelaFormCadastroImplementacao extends TelaFormCadastro {
     public void Observadores() {
         getBtnCadastrarForm().setOnClickListener(v -> {
             try {
-                vetificarESalvarDados();
+                verificarESalvarDados();
                 voltarParaTelaLogin();
             } catch (FormCadastroException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void vetificarESalvarDados() throws FormCadastroException {
+    private void verificarESalvarDados() throws FormCadastroException {
         setUser(new Usuario(
                 getPegarNomeCadastro().getText().toString(),
                 getPegarEmailCadastro().getText().toString(),
                 getPegarSenhaCadastro().getText().toString()));
         if (getUser().getNome().isEmpty() || getUser().getEmail().isEmpty() || getUser().getSenha().isEmpty()) {
             throw new FormCadastroException("Os campos estão vazios. Preencha novamente.");
-        }else {
+        } else if (getUser().getSenha().length() < 6) {
+            throw new FormCadastroException("Digite uma senha com no mínimo 6 caracteres");
+        } else {
             FirebaseFirestoreRepository.adicionarUsuario(this,getUser().getEmail(),getUser().getSenha());
         }
     }
@@ -54,11 +56,11 @@ public class TelaFormCadastroImplementacao extends TelaFormCadastro {
         finish();
     }
 
-    public Usuario getUser() {
+    private Usuario getUser() {
         return user;
     }
 
-    public void setUser(Usuario user) {
+    private void setUser(Usuario user) {
         this.user = user;
     }
 }
