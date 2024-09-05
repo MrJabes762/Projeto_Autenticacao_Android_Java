@@ -3,6 +3,9 @@ package com.example.projetoautenticaoandroidjava.Data;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
+import com.example.projetoautenticaoandroidjava.Services.TelaPrincipal.TelaPrincipalImplementacao;
 import com.example.projetoautenticaoandroidjava.model.Usuario;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -11,7 +14,10 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -75,6 +81,21 @@ public abstract class FirebaseFirestoreRepository {
         getBancoDeDadosAtenticacoa().signOut();
     }
 
+    public static void pegarDados(String id, TelaPrincipalImplementacao.Callback<String> callback) {// pega os dados
+        setBancoDeDados(FirebaseFirestore.getInstance());// setando a instancia do banco
+        setDocumentReference(getBancoDeDados().collection("Usuarios").document(id));// pega o documento referente ao id informado dentro do banco
+        getDocumentReference().get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null && task.getResult().exists()) {
+                String dados = task.getResult().getString("Nome");
+                callback.onSuccess(dados);// retorna pro ciclo de vida o dado
+            } else { // em caso de falha
+                callback.onError("Usuário não encontrado no Firestore"); /// ou error
+            }
+        });
+    }
+
+
+
     private static void exibirMensagem(Context context, String mensagem) {
         Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show();
     }
@@ -125,5 +146,4 @@ public abstract class FirebaseFirestoreRepository {
     private static void setUsuarioAtual(FirebaseUser usuarioAtual) {
         FirebaseFirestoreRepository.usuarioAtual = usuarioAtual;
     }
-
 }
