@@ -1,6 +1,7 @@
 package com.example.projetoautenticaoandroidjava.Services.TelaPrincipal;
 
 import com.example.projetoautenticaoandroidjava.Controllers.TelaPrincipal;
+import com.example.projetoautenticaoandroidjava.Data.FirebaseFirestoreRepository;
 import com.example.projetoautenticaoandroidjava.R;
 import com.example.projetoautenticaoandroidjava.Services.Direcionador.DirecionadorDeLayout;
 import com.example.projetoautenticaoandroidjava.Services.TelaLogin.TelaLoginImplementacao;
@@ -20,8 +21,13 @@ public class TelaPrincipalImplementacao extends TelaPrincipal {
     @Override
     public void Observadores() {
         getBtnDeslogar().setOnClickListener(v -> {
+            deslogarUsuario();
             voltarParaLogin();
         });
+    }
+
+    private void deslogarUsuario() {
+        FirebaseFirestoreRepository.delogarUsuario();
     }
 
     private void voltarParaLogin() {
