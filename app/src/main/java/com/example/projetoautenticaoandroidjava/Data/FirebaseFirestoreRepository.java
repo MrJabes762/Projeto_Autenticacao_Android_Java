@@ -70,6 +70,10 @@ public abstract class FirebaseFirestoreRepository {
         setUsuarioAtual(FirebaseAuth.getInstance().getCurrentUser());
         return getUsuarioAtual();
     }
+    public static void delogarUsuario() {
+        setBancoDeDadosAtenticacoa(FirebaseAuth.getInstance());
+        getBancoDeDadosAtenticacoa().signOut();
+    }
 
     private static void exibirMensagem(Context context, String mensagem) {
         Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show();
@@ -121,4 +125,5 @@ public abstract class FirebaseFirestoreRepository {
     private static void setUsuarioAtual(FirebaseUser usuarioAtual) {
         FirebaseFirestoreRepository.usuarioAtual = usuarioAtual;
     }
+
 }
