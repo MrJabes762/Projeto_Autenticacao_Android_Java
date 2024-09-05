@@ -11,6 +11,12 @@ public class Usuario {
         setSenha(senha);
     }
 
+    public Usuario(String email, String senha) {
+       setNome(null);
+       setEmail(email);
+       setSenha(senha);
+    }
+
     public String getNome() {
         return nome;
     }
