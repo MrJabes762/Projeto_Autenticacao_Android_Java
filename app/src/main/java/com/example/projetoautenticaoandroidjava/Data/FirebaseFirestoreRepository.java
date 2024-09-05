@@ -9,16 +9,17 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class FirebaseFirestoreRepository {
     private static FirebaseFirestore bancoDeDados;
     private static FirebaseAuth bancoDeDadosAtenticacoa;
+    private static FirebaseUser usuarioAtual;
     private static Map<String,Object> usuarios;
     private static String usuarioID;
     private static DocumentReference documentReference;
@@ -65,6 +66,10 @@ public abstract class FirebaseFirestoreRepository {
         return getBancoDeDadosAtenticacoa()
                 .signInWithEmailAndPassword(user.getEmail(), user.getSenha());
     }
+    public static FirebaseUser pegarUsuarioAtual (){
+        setUsuarioAtual(FirebaseAuth.getInstance().getCurrentUser());
+        return getUsuarioAtual();
+    }
 
     private static void exibirMensagem(Context context, String mensagem) {
         Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show();
@@ -109,4 +114,11 @@ public abstract class FirebaseFirestoreRepository {
         FirebaseFirestoreRepository.documentReference = documentReference;
     }
 
+    private static FirebaseUser getUsuarioAtual() {
+        return usuarioAtual;
+    }
+
+    private static void setUsuarioAtual(FirebaseUser usuarioAtual) {
+        FirebaseFirestoreRepository.usuarioAtual = usuarioAtual;
+    }
 }
