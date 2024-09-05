@@ -14,6 +14,7 @@ import com.example.projetoautenticaoandroidjava.Services.TelaPrincipal.TelaPrinc
 import com.example.projetoautenticaoandroidjava.model.Usuario;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.HashMap;
 
@@ -85,6 +86,16 @@ public class TelaLoginImplementacao extends TelaLogin {
         }
     }
 
+    @Override
+    protected void onStart() {// ciclo de vida do App
+        super.onStart();
+        if (usuarioAtual() != null){
+            irTelaPrincipal();
+        }
+    }
+    private FirebaseUser usuarioAtual(){
+        return FirebaseFirestoreRepository.pegarUsuarioAtual();
+    }
     private Task<AuthResult> autenticarUsuario(Usuario user) {// vai pasar a responsabilidade para o Firebase repository pra verificar o usuario e retorinar o resultado da execução
         return FirebaseFirestoreRepository.autenticarUsuario(user);
     }
