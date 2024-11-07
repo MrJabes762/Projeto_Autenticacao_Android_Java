@@ -1,16 +1,16 @@
-package com.example.projetoautenticaoandroidjava.Services.TelaLogin;
+package com.example.projetoautenticaoandroidjava.services.TelaLogin;
 
 import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.projetoautenticaoandroidjava.Controllers.TelaLogin;
-import com.example.projetoautenticaoandroidjava.Data.FirebaseFirestoreRepository;
+import com.example.projetoautenticaoandroidjava.controllers.TelaLogin;
+import com.example.projetoautenticaoandroidjava.data.FirebaseFirestoreRepository;
 import com.example.projetoautenticaoandroidjava.R;
-import com.example.projetoautenticaoandroidjava.Services.Direcionador.DirecionadorDeLayout;
-import com.example.projetoautenticaoandroidjava.Services.TelaFormCadastro.TelaFormCadastroImplementacao;
-import com.example.projetoautenticaoandroidjava.Services.TelaPrincipal.TelaPrincipalImplementacao;
+import com.example.projetoautenticaoandroidjava.services.Direcionador.DirecionadorDeLayout;
+import com.example.projetoautenticaoandroidjava.services.TelaFormCadastro.TelaFormCadastroImplementacao;
+import com.example.projetoautenticaoandroidjava.services.TelaPrincipal.TelaPrincipalImplementacao;
 import com.example.projetoautenticaoandroidjava.model.Usuario;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

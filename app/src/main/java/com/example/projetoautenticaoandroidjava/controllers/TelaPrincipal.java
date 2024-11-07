@@ -1,4 +1,4 @@
-package com.example.projetoautenticaoandroidjava.Controllers;
+package com.example.projetoautenticaoandroidjava.controllers;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.projetoautenticaoandroidjava.R;
-import com.example.projetoautenticaoandroidjava.Services.Operacoes;
+import com.example.projetoautenticaoandroidjava.services.Operacoes;
 
 public abstract class TelaPrincipal extends AppCompatActivity implements Operacoes {
     // Objetos

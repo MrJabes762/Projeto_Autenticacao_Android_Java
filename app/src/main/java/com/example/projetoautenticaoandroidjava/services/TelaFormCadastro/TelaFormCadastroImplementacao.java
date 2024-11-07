@@ -1,12 +1,12 @@
-package com.example.projetoautenticaoandroidjava.Services.TelaFormCadastro;
+package com.example.projetoautenticaoandroidjava.services.TelaFormCadastro;
 
 import android.widget.Toast;
 
-import com.example.projetoautenticaoandroidjava.Controllers.TelaFormCadastro;
-import com.example.projetoautenticaoandroidjava.Data.FirebaseFirestoreRepository;
+import com.example.projetoautenticaoandroidjava.controllers.TelaFormCadastro;
+import com.example.projetoautenticaoandroidjava.data.FirebaseFirestoreRepository;
 import com.example.projetoautenticaoandroidjava.R;
-import com.example.projetoautenticaoandroidjava.Services.Direcionador.DirecionadorDeLayout;
-import com.example.projetoautenticaoandroidjava.Services.TelaLogin.TelaLoginImplementacao;
+import com.example.projetoautenticaoandroidjava.services.Direcionador.DirecionadorDeLayout;
+import com.example.projetoautenticaoandroidjava.services.TelaLogin.TelaLoginImplementacao;
 import com.example.projetoautenticaoandroidjava.model.Usuario;
 
 public class TelaFormCadastroImplementacao extends TelaFormCadastro {

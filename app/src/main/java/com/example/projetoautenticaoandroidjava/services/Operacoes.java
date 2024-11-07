@@ -1,4 +1,4 @@
-package com.example.projetoautenticaoandroidjava.Services;
+package com.example.projetoautenticaoandroidjava.services;
 
 public interface Operacoes {
     public void inicializarComponentes ();

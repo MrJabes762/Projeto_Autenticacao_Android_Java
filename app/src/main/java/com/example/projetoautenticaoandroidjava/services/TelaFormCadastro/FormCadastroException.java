@@ -1,4 +1,4 @@
-package com.example.projetoautenticaoandroidjava.Services.TelaFormCadastro;
+package com.example.projetoautenticaoandroidjava.services.TelaFormCadastro;
 
 public class FormCadastroException extends Exception{
     private String mensagem;

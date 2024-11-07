@@ -1,4 +1,4 @@
-package com.example.projetoautenticaoandroidjava.Services.Direcionador;
+package com.example.projetoautenticaoandroidjava.services.Direcionador;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,11 +1,11 @@
-package com.example.projetoautenticaoandroidjava.Data;
+package com.example.projetoautenticaoandroidjava.data;
 
 import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.projetoautenticaoandroidjava.Services.TelaPrincipal.TelaPrincipalImplementacao;
+import com.example.projetoautenticaoandroidjava.services.TelaPrincipal.TelaPrincipalImplementacao;
 import com.example.projetoautenticaoandroidjava.model.Usuario;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
