@@ -1,6 +1,6 @@
 package com.example.projetoautenticaoandroidjava.services.TelaPrincipal;
 
-import android.widget.Toast;
+import android.content.Context;
 
 import com.example.projetoautenticaoandroidjava.controllers.TelaPrincipal;
 import com.example.projetoautenticaoandroidjava.data.FirebaseFirestoreRepository;
@@ -8,6 +8,7 @@ import com.example.projetoautenticaoandroidjava.R;
 import com.example.projetoautenticaoandroidjava.services.Direcionador.DirecionadorDeLayout;
 import com.example.projetoautenticaoandroidjava.services.TelaLogin.TelaLoginImplementacao;
 import com.example.projetoautenticaoandroidjava.model.Usuario;
+import com.example.projetoautenticaoandroidjava.services.exibirMensagem.Exibir;
 
 public class TelaPrincipalImplementacao extends TelaPrincipal {
     private String email;
@@ -36,6 +37,7 @@ public class TelaPrincipalImplementacao extends TelaPrincipal {
 
     protected void onStart() {
         super.onStart();
+        Context context = this;
         String usuarioId = FirebaseFirestoreRepository.pegarUsuarioAtual().getUid();
             Usuario.setId(usuarioId);
             setEmail(FirebaseFirestoreRepository.pegarUsuarioAtual().getEmail());
@@ -45,14 +47,14 @@ public class TelaPrincipalImplementacao extends TelaPrincipal {
                     if (nome != null && !nome.isEmpty()) {
                         getTextExibirUsuairo().setText(nome);
                     } else {
-                        Toast.makeText(TelaPrincipalImplementacao.this, "Usuario Não Encontrado", Toast.LENGTH_SHORT).show();
+                        Exibir.exibirMensagem(context, "Usuario Não Encontrado");
                     }
                     getTextExibirEmail().setText(getEmail());
                 }
 
                 @Override
                 public void onError(String error) {// em caso de erro
-                    Toast.makeText(getApplicationContext(), "Erro ao buscar dados: " + error, Toast.LENGTH_LONG).show();
+                    Exibir.exibirMensagem(context,"Erro ao buscar dados: " + error);
                 }
             });
     }

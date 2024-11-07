@@ -8,6 +8,7 @@ import com.example.projetoautenticaoandroidjava.R;
 import com.example.projetoautenticaoandroidjava.services.Direcionador.DirecionadorDeLayout;
 import com.example.projetoautenticaoandroidjava.services.TelaLogin.TelaLoginImplementacao;
 import com.example.projetoautenticaoandroidjava.model.Usuario;
+import com.example.projetoautenticaoandroidjava.services.exibirMensagem.Exibir;
 
 public class TelaFormCadastroImplementacao extends TelaFormCadastro {
    private Usuario user;
@@ -31,7 +32,7 @@ public class TelaFormCadastroImplementacao extends TelaFormCadastro {
                 verificarESalvarDados();
                 voltarParaTelaLogin();
             } catch (FormCadastroException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Exibir.exibirMensagem(this, e.getMessage());
             }
         });
     }
@@ -41,13 +42,8 @@ public class TelaFormCadastroImplementacao extends TelaFormCadastro {
                 getPegarNomeCadastro().getText().toString(),
                 getPegarEmailCadastro().getText().toString(),
                 getPegarSenhaCadastro().getText().toString()));
-        if (getUser().getNome().isEmpty() || getUser().getEmail().isEmpty() || getUser().getSenha().isEmpty()) {
-            throw new FormCadastroException("Os campos estão vazios. Preencha novamente.");
-        } else if (getUser().getSenha().length() < 6) {
-            throw new FormCadastroException("Digite uma senha com no mínimo 6 caracteres");
-        } else {
-            FirebaseFirestoreRepository.adicionarUsuario(this,getUser().getEmail(),getUser().getSenha(), getUser().getNome());
-        }
+
+        FirebaseFirestoreRepository.adicionarUsuario(this,getUser().getEmail(),getUser().getSenha(), getUser().getNome());
     }
 
 

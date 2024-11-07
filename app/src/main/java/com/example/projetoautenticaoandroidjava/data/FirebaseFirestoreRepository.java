@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 
 import com.example.projetoautenticaoandroidjava.services.TelaPrincipal.TelaPrincipalImplementacao;
 import com.example.projetoautenticaoandroidjava.model.Usuario;
+import com.example.projetoautenticaoandroidjava.services.exibirMensagem.Exibir;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,16 +37,16 @@ public abstract class FirebaseFirestoreRepository {
                     try {
                         if (task.isSuccessful()) {
                             salvarDadosDoUsuario(context,nome);
-                            exibirMensagem(context, "Usuário cadastrado com sucesso no banco de dados!");
+                            Exibir.exibirMensagem(context, "Usuário cadastrado com sucesso no banco de dados!");
                         } else {
                             throw task.getException();
                         }
                     } catch (FirebaseAuthUserCollisionException e) {
-                        exibirMensagem(context, "Esta conta já foi cadastrada");
+                        Exibir.exibirMensagem(context,"Esta conta já foi cadastrada");
                     } catch (FirebaseAuthInvalidCredentialsException e) {
-                        exibirMensagem(context, "Email inválido");
+                        Exibir.exibirMensagem(context, "Email inválido");
                     }catch (Exception e){
-                        exibirMensagem(context, "Erro ao realizar o cadastro ");
+                        Exibir.exibirMensagem(context, "Erro ao realizar o cadastro ");
                     }
                 });
     }
@@ -61,9 +62,9 @@ public abstract class FirebaseFirestoreRepository {
                 .collection("Usuarios")
                 .document(getUsuarioID())); // Criando a coleção de Usuarios e dentro dele terá documetos no modelo ID
         getDocumentReference().set(getUsuarios()).addOnSuccessListener( sucess -> { // se for sucesso ao salvar o nome
-            exibirMensagem(context, "Usuario Salvo Com Sucesso");
+            Exibir.exibirMensagem(context, "Usuario Salvo Com Sucesso");
         }).addOnFailureListener( faliure -> {// se houver falha ao salvar o nome
-            exibirMensagem(context, "Erro ao cadastrar o Usuario" + faliure);
+            Exibir.exibirMensagem(context, "Erro ao cadastrar o Usuario" + faliure);
         });
     }
 
@@ -92,12 +93,6 @@ public abstract class FirebaseFirestoreRepository {
                 callback.onError("Usuário não encontrado no Firestore"); /// ou error
             }
         });
-    }
-
-
-
-    private static void exibirMensagem(Context context, String mensagem) {
-        Toast.makeText(context, mensagem, Toast.LENGTH_LONG).show();
     }
 
     private static FirebaseAuth getBancoDeDadosAtenticacoa() {

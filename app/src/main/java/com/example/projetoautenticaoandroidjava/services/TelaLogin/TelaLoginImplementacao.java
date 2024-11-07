@@ -9,9 +9,11 @@ import com.example.projetoautenticaoandroidjava.controllers.TelaLogin;
 import com.example.projetoautenticaoandroidjava.data.FirebaseFirestoreRepository;
 import com.example.projetoautenticaoandroidjava.R;
 import com.example.projetoautenticaoandroidjava.services.Direcionador.DirecionadorDeLayout;
+import com.example.projetoautenticaoandroidjava.services.TelaFormCadastro.FormCadastroException;
 import com.example.projetoautenticaoandroidjava.services.TelaFormCadastro.TelaFormCadastroImplementacao;
 import com.example.projetoautenticaoandroidjava.services.TelaPrincipal.TelaPrincipalImplementacao;
 import com.example.projetoautenticaoandroidjava.model.Usuario;
+import com.example.projetoautenticaoandroidjava.services.exibirMensagem.Exibir;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,7 +56,9 @@ public class TelaLoginImplementacao extends TelaLogin {
             try {
                 verificarEAutenticarLogin();
             } catch (TelaLoginException e) {
-                exibirMensagme(e.getMessage());
+                Exibir.exibirMensagem(this, e.getMessage());
+            } catch (FormCadastroException e){
+                Exibir.exibirMensagem(this,e.getMessage());
             }
         });
         getBtnCadastrar().setOnClickListener(v -> {
@@ -62,7 +66,7 @@ public class TelaLoginImplementacao extends TelaLogin {
         });
     }
 
-    private void verificarEAutenticarLogin() throws TelaLoginException {
+    private void verificarEAutenticarLogin() throws TelaLoginException, FormCadastroException {
         setUser(new Usuario(
                 getPegarEmail().getText().toString(),
                 getPegarSenha().getText().toString()
@@ -77,9 +81,9 @@ public class TelaLoginImplementacao extends TelaLogin {
                             new Handler().postDelayed(this::irTelaPrincipal, 3000);
                         } else {// se nao conseguiu chama a exceção
                             if (task.getException() != null) {
-                                exibirMensagme("Erro ao logar: ");
+                                Exibir.exibirMensagem(this,"Erro ao logar: " );
                             } else {
-                                exibirMensagme("Erro desconhecido ao logar.");
+                                Exibir.exibirMensagem(this, "Erro desconhecido ao logar.");
                             }
                         }
                     });
@@ -114,7 +118,7 @@ public class TelaLoginImplementacao extends TelaLogin {
     }
 
     private void irTelaPrincipal() {
-        exibirMensagme("Sucesso ao logar!");
+        Exibir.exibirMensagem(this,"Sucesso ao Logar");
         if (getCachedLayoutPrincipal() != null){
             DirecionadorDeLayout.irParaLayout(this, getLayoutCache().get(R.layout.activity_tela_principal));
         } else {
@@ -125,9 +129,7 @@ public class TelaLoginImplementacao extends TelaLogin {
         }
         finish();
     }
-    private void exibirMensagme(String string) {
-        Toast.makeText(this, string, Toast.LENGTH_LONG).show();
-    }
+
     private Usuario getUser() {
         return user;
     }
