@@ -12,68 +12,50 @@ import com.example.projetoautenticaoandroidjava.services.exibirMensagem.Exibir;
 
 public class TelaPrincipalImplementacao extends TelaPrincipal {
     private String email;
-    @Override
-    public void inicializarComponentes() {
-        setEditTexs();
-        setBtnDeslogar(findViewById(R.id.btnDeslogar));
-    }
-
-    private void setEditTexs() {
-        setTextExibirEmail(findViewById(R.id.textExibirEmail));
-        setTextExibirUsuairo(findViewById(R.id.textexibirUsuario));
-    }
 
     @Override
     public void Observadores() {
         getBtnDeslogar().setOnClickListener(v -> {
-            deslogarUsuario();
+            FirebaseFirestoreRepository.delogarUsuario();
             voltarParaLogin();
         });
     }
 
-    private void deslogarUsuario() {
-        FirebaseFirestoreRepository.delogarUsuario();
-    }
-
+    @Override
     protected void onStart() {
         super.onStart();
         Context context = this;
         String usuarioId = FirebaseFirestoreRepository.pegarUsuarioAtual().getUid();
-            Usuario.setId(usuarioId);
-            setEmail(FirebaseFirestoreRepository.pegarUsuarioAtual().getEmail());
-            FirebaseFirestoreRepository.pegarDados(Usuario.getId(), new Callback<String>() {
-                @Override
-                public void onSuccess(String nome) {// Implementação dos metodos
-                    if (nome != null && !nome.isEmpty()) {
-                        getTextExibirUsuairo().setText(nome);
-                    } else {
-                        Exibir.exibirMensagem(context, "Usuario Não Encontrado");
-                    }
-                    getTextExibirEmail().setText(getEmail());
+        Usuario.setId(usuarioId);
+        setEmail(FirebaseFirestoreRepository.pegarUsuarioAtual().getEmail());
+        FirebaseFirestoreRepository.pegarDados(usuarioId, new Callback<String>() {
+            @Override
+            public void onSuccess(String nome) {
+                if (nome != null && !nome.isEmpty()) {
+                    getTextExibirUsuario().setText(nome);
+                } else {
+                    Exibir.exibirMensagem(context, "Usuário não encontrado");
                 }
+                getTextExibirEmail().setText(getEmail());
+            }
 
-                @Override
-                public void onError(String error) {// em caso de erro
-                    Exibir.exibirMensagem(context,"Erro ao buscar dados: " + error);
-                }
-            });
+            @Override
+            public void onError(String error) {
+                Exibir.exibirMensagem(context, "Erro ao buscar dados: " + error);
+            }
+        });
     }
-
 
     private void voltarParaLogin() {
         DirecionadorDeLayout.irParaLayout(this, TelaLoginImplementacao.class);
         finish();
     }
-    public interface Callback<T> {// Interface para pegar o nme ou os dados
-        void onSuccess(T nome);
-        void onError(String error);
-    }
 
-    public String getEmail() {
+    private String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 }

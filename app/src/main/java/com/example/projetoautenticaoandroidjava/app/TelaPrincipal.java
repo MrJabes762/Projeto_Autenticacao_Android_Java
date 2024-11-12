@@ -10,14 +10,10 @@ import com.example.projetoautenticaoandroidjava.R;
 import com.example.projetoautenticaoandroidjava.services.Operacoes;
 
 public abstract class TelaPrincipal extends AppCompatActivity implements Operacoes {
-    // Objetos
-    // TextsViews
-    private TextView textExibirUsuairo;
+    private TextView textExibirUsuario;
     private TextView textExibirEmail;
-    // Botoao
     private AppCompatButton btnDeslogar;
 
-    //Metoodo Princpla de Criação da Tela
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,27 +22,22 @@ public abstract class TelaPrincipal extends AppCompatActivity implements Operaco
         Observadores();
     }
 
-    protected TextView getTextExibirUsuairo() {
-        return textExibirUsuairo;
+    @Override
+    public void inicializarComponentes() {
+        textExibirEmail = findViewById(R.id.textExibirEmail);
+        textExibirUsuario = findViewById(R.id.textexibirUsuario);
+        btnDeslogar = findViewById(R.id.btnDeslogar);
     }
 
-    protected void setTextExibirUsuairo(TextView textExibirUsuairo) {
-        this.textExibirUsuairo = textExibirUsuairo;
+    protected TextView getTextExibirUsuario() {
+        return textExibirUsuario;
     }
 
     protected TextView getTextExibirEmail() {
         return textExibirEmail;
     }
 
-    protected void setTextExibirEmail(TextView textExibirEmail) {
-        this.textExibirEmail = textExibirEmail;
-    }
-
     protected AppCompatButton getBtnDeslogar() {
         return btnDeslogar;
-    }
-
-    protected void setBtnDeslogar(AppCompatButton btnDeslogar) {
-        this.btnDeslogar = btnDeslogar;
     }
 }
