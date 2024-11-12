@@ -14,7 +14,7 @@ public class TelaPrincipalImplementacao extends TelaPrincipal {
     private String email;
 
     @Override
-    public void Observadores() {
+    public void observadores() {
         getBtnDeslogar().setOnClickListener(v -> {
             FirebaseFirestoreRepository.delogarUsuario();
             voltarParaLogin();

@@ -12,7 +12,7 @@ public class TelaFormCadastroImplementacao extends TelaFormCadastro {
     private Usuario usuario;
 
     @Override
-    public void configurarListeners() {
+    public void observadores() {
         getBtnCadastrarForm().setOnClickListener(v -> {
             try {
                 verificarESalvarDados();

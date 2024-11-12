@@ -23,7 +23,7 @@ public class TelaLoginImplementacao extends TelaLogin {
     }
 
     @Override
-    public void Observadores() {
+    public void observadores() {
         getBtnEntrar().setOnClickListener(v -> {
             try {
                 verificarEAutenticarLogin();

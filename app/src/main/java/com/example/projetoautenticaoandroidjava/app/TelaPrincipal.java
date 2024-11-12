@@ -19,7 +19,7 @@ public abstract class TelaPrincipal extends AppCompatActivity implements Operaco
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_principal);
         inicializarComponentes();
-        Observadores();
+        observadores();
     }
 
     @Override

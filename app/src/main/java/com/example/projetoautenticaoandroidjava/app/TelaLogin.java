@@ -29,7 +29,7 @@ public abstract class TelaLogin extends AppCompatActivity implements Operacoes {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_login);
         inicializarComponentes();
-        Observadores();
+        observadores();
     }
 
     @Override

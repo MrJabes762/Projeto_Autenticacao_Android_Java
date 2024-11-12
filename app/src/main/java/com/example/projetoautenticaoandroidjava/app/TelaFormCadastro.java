@@ -22,7 +22,7 @@ public abstract class TelaFormCadastro extends AppCompatActivity implements Oper
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_form_cadastro);
         inicializarComponentes();
-        configurarListeners();
+        observadores ();
     }
 
     @Override
